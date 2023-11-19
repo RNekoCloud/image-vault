@@ -11,6 +11,12 @@ func main() {
     io.WriteString(w, "Hello world \n")
   })
 
+  http.HandleFunc("/upload", uploadHandler)
+
   fmt.Println("Server is running")
   http.ListenAndServe(":3000", nil)
+}
+
+func uploadHandler(w http.ResponseWriter, r *http.Request) {
+  fmt.Fprint(w, "Uploading file")
 }
