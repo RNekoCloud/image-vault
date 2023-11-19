@@ -18,5 +18,20 @@ func main() {
 }
 
 func uploadHandler(w http.ResponseWriter, r *http.Request) {
-  fmt.Fprint(w, "Uploading file")
+  fmt.Println("Endpoint upload hit")
+  r.ParseMultipartForm(10 << 20)
+
+  file, handle, err := r.FormFile("myFile")
+
+  if err != nil {
+    fmt.Println("Failed to retrieving file:", err)
+    return
+  }
+
+  defer file.Close()
+
+  fmt.Println("Uploaded file:", handle.Filename)
+
+  fmt.Fprint(w, "Upload is complete")
+
 }
