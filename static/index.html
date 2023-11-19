@@ -8,13 +8,15 @@
   </head>
   <body>
   
-  <div class="container">  
-    <div class="mb-3">
-      <label for="formFileSm" class="form-label">Upload your images</label>
-      <input class="form-control form-control-sm" name="myFile" type="file">
-      <input type="submit" value="Upload" class="btn btn-primary mt-3">
+  <form enctype="multipart/form-data" action="/upload" method="POST">
+    <div class="container">  
+      <div class="mb-3">
+        <label for="formFileSm" class="form-label">Upload your images</label>
+        <input class="form-control form-control-sm" name="myFile" type="file">
+        <input type="submit" value="Upload" class="btn btn-primary mt-3">
+      </div>
     </div>
-  </div>
+  </form>
 
 
 
