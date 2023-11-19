@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	
+	"io/ioutil"
+
 	"net/http"
 )
 
@@ -34,6 +35,24 @@ func uploadHandler(w http.ResponseWriter, r *http.Request) {
   fmt.Println("MIME Header:", handle.Header)
 
 
+  temp, err := ioutil.TempFile("temp-images", "upload-*.png")
+
+  if err != nil {
+    fmt.Println("Failed to write temporary file", err)
+    return
+  }
+
+  defer temp.Close()
+
+  fileByte, err := ioutil.ReadAll(file)
+
+  if err != nil {
+    fmt.Println("Failed to read file:", err)
+    return
+  }
+
+  temp.Write(fileByte)
+ 
   fmt.Fprint(w, "Upload is complete")
 
 }
