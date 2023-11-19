@@ -2,14 +2,13 @@ package main
 
 import (
 	"fmt"
-	"io"
+	
 	"net/http"
 )
 
 func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-    io.WriteString(w, "Hello world \n")
-  })
+  fs := http.FileServer(http.Dir("./static"))
+	http.Handle("/", fs)
 
   http.HandleFunc("/upload", uploadHandler)
 
