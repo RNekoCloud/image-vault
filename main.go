@@ -31,6 +31,9 @@ func uploadHandler(w http.ResponseWriter, r *http.Request) {
   defer file.Close()
 
   fmt.Println("Uploaded file:", handle.Filename)
+  fmt.Println("Size:", handle.Size)
+  fmt.Println("MIME Header:", handle.Header)
+
 
   fmt.Fprint(w, "Upload is complete")
 
